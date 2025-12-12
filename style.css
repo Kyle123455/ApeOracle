@@ -1062,3 +1062,123 @@ h1, h2, h3, h4 {
         font-size: 0.7rem;
     }
 }
+
+/* Live Counter Styles */
+.live-counter {
+    background: rgba(15, 15, 35, 0.8);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 30px 0;
+    border: 1px solid rgba(153, 69, 255, 0.3);
+}
+
+.counter-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.counter-header i {
+    color: var(--solana-green);
+    font-size: 1.5rem;
+}
+
+.counter-header h3 {
+    color: white;
+    font-size: 1.3rem;
+}
+
+.counter-display {
+    text-align: center;
+    margin: 25px 0;
+}
+
+.counter-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--solana-green);
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 10px rgba(0, 255, 163, 0.3);
+}
+
+.counter-label {
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.counter-goal {
+    margin: 25px 0;
+}
+
+.goal-text {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.goal-text i {
+    color: var(--accent);
+}
+
+.goal-progress {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.goal-progress .progress-bar {
+    flex: 1;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.goal-progress .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--solana-purple), var(--solana-green));
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.goal-percentage {
+    color: var(--solana-green);
+    font-weight: 600;
+    min-width: 50px;
+}
+
+.counter-updates {
+    margin-top: 20px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.update-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.update-item i {
+    color: var(--solana-green);
+}
+
+.update-item.new {
+    background: rgba(0, 255, 163, 0.1);
+    border-left: 3px solid var(--solana-green);
+}
