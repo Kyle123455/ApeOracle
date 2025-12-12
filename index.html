@@ -575,6 +575,37 @@
         }
         
         /* ===== NFT AIRDROP SECTION ===== */
+
+        <!-- Add this inside your NFT Airdrop section -->
+<div class="live-counter">
+    <div class="counter-header">
+        <i class="fas fa-users"></i>
+        <h3>Live Holder Counter</h3>
+    </div>
+    <div class="counter-display">
+        <div class="counter-number" id="liveHolderCount">0</div>
+        <div class="counter-label">Current Holders</div>
+    </div>
+    <div class="counter-goal">
+        <div class="goal-text">
+            <i class="fas fa-bullseye"></i>
+            <span>Goal: <strong>1,000 holders</strong> for NFT airdrop</span>
+        </div>
+        <div class="goal-progress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="liveProgress" style="width: 0%"></div>
+            </div>
+            <div class="goal-percentage" id="goalPercentage">0%</div>
+        </div>
+    </div>
+    <div class="counter-updates" id="recentUpdates">
+        <!-- Recent updates will appear here -->
+        <div class="update-item">
+            <i class="fas fa-clock"></i>
+            <span>Starting at 0 holders</span>
+        </div>
+    </div>
+</div>
         .airdrop-container {
             background: linear-gradient(135deg, rgba(15, 15, 35, 0.9), rgba(153, 69, 255, 0.1));
             border-radius: 20px;
