@@ -1,206 +1,175 @@
-// Initialize when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Chart.js
-    initTokenomicsChart();
+// Simple Holder Tracker (Starts at 0, updates with localStorage)
+let holders = 0;
+
+function initHolderTracker() {
+    // Start at 0
+    holders = 0;
     
-    // Generate random prophecy
-    generateProphecy();
-    
-    // Update stats with random numbers
-    updateStats();
-    
-    // Add event listeners
-    document.getElementById('generate-prophecy').addEventListener('click', generateProphecy);
-    
-    // Mobile menu toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function() {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
+    // Try to load from localStorage
+    const saved = localStorage.getItem('apor_holders_v2');
+    if (saved) {
+        holders = parseInt(saved);
     }
     
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu if open
-                if (window.innerWidth <= 768) {
-                    navLinks.style.display = 'none';
-                }
-            }
-        });
-    });
+    // Display initial count
+    updateHolderDisplay();
     
-    // Animate roadmap phases on scroll
-    const observerOptions = {
-        threshold: 0.2,
-        rootMargin: '0px 0px -50px 0px'
-    };
+    // Check URL for referral (simulating new purchase)
+    checkForNewHolder();
     
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animated');
-            }
-        });
-    }, observerOptions);
+    // Set up periodic checks
+    setInterval(checkForNewHolder, 30000);
     
-    document.querySelectorAll('.roadmap-phase').forEach(phase => {
-        observer.observe(phase);
-    });
-});
-
-// Tokenomics Chart
-function initTokenomicsChart() {
-    const ctx = document.getElementById('tokenomicsChart').getContext('2d');
-    
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Community Airdrop', 'Liquidity Pool', 'Staking Rewards', 'NFT Development', 'Team & Marketing'],
-            datasets: [{
-                data: [40, 30, 15, 10, 5],
-                backgroundColor: [
-                    '#FF6B6B',
-                    '#4ECDC4',
-                    '#FFD166',
-                    '#06D6A0',
-                    '#118AB2'
-                ],
-                borderWidth: 0,
-                hoverOffset: 15
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return `${context.label}: ${context.parsed}%`;
-                        }
-                    }
-                }
-            },
-            animation: {
-                animateScale: true,
-                animateRotate: true,
-                duration: 2000
-            }
-        }
-    });
-}
-
-// Generate random prophecy
-function generateProphecy() {
-    const prophecies = [
-        "When three moons align, $APOR shall 100x. Trust the Oracle.",
-        "The apes who hold through the dip shall be rewarded with unimaginable gains.",
-        "A whale approaches. Do not fear, for the Oracle foresees a green candle.",
-        "The prophecy speaks of a legendary partnership. An ape-shaped NFT is coming.",
-        "When Twitter FUD peaks, that is when you must buy more. The Oracle knows.",
-        "A cross-chain bridge shall be built, connecting all degenerate apes.",
-        "The memes shall become reality. Elon will tweet about us. It is written.",
-        "Stake your tokens, close your charts, and return in one moon cycle.",
-        "The NFT collection will sell out in 3.14 minutes. Prepare your wallets.",
-        "A new ATH approaches. The charts show a pattern of pure hopium."
-    ];
-    
-    const randomProphecy = prophecies[Math.floor(Math.random() * prophecies.length)];
-    document.getElementById('prophecy-text').textContent = `"${randomProphecy}"`;
-    
-    // Add animation
-    const prophecyElement = document.getElementById('prophecy-text');
-    prophecyElement.style.animation = 'none';
-    setTimeout(() => {
-        prophecyElement.style.animation = 'pulse 1s';
-    }, 10);
-}
-
-// Update stats with random data
-function updateStats() {
-    // Generate random market cap between 1M and 50M
-    const marketCap = (Math.random() * 49 + 1).toFixed(2);
-    document.getElementById('market-cap').textContent = `$${marketCap}M`;
-    
-    // Generate random holder count between 5000 and 25000
-    const holders = Math.floor(Math.random() * 20000 + 5000).toLocaleString();
-    document.getElementById('holders').textContent = holders;
-    
-    // Generate random price
-    const price = (Math.random() * 0.00009 + 0.00001).toFixed(7);
-    document.getElementById('price').innerHTML = `$${price}`;
-    
-    // Update every 30 seconds
-    setTimeout(updateStats, 30000);
-}
-
-// Copy contract address
-function copyContract() {
-    const contractAddress = "0xAP3ORAC1E000000000000000000000000000000";
-    navigator.clipboard.writeText(contractAddress).then(function() {
-        const btn = document.querySelector('.btn-copy');
-        const originalText = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-        btn.style.backgroundColor = '#06D6A0';
-        
-        setTimeout(() => {
-            btn.innerHTML = originalText;
-            btn.style.backgroundColor = '';
-        }, 2000);
-    });
-}
-
-// Add parallax effect on scroll
-window.addEventListener('scroll', function() {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    
-    if (hero) {
-        hero.style.backgroundPosition = `center ${scrolled * 0.5}px`;
-    }
-});
-
-// Add animation to features on scroll
-function animateOnScroll() {
-    const features = document.querySelectorAll('.feature-card');
-    
-    features.forEach((feature, index) => {
-        const featurePosition = feature.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight / 1.2;
-        
-        if (featurePosition < screenPosition) {
+    // Add click listener to buy button (simulates purchase)
+    document.querySelectorAll('.btn-buy, .btn-primary').forEach(btn => {
+        btn.addEventListener('click', () => {
+            // When someone clicks buy, increment after delay (simulating purchase)
             setTimeout(() => {
-                feature.style.opacity = '1';
-                feature.style.transform = 'translateY(0)';
-            }, index * 100);
-        }
+                holders++;
+                updateHolderDisplay();
+                showPurchaseNotification();
+            }, 2000);
+        });
     });
 }
 
-// Initialize feature animations
-document.querySelectorAll('.feature-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.5s, transform 0.5s';
-});
+function checkForNewHolder() {
+    // Check URL parameters for new holder
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('newholder')) {
+        holders++;
+        updateHolderDisplay();
+        showNewHolderPopup();
+        
+        // Clean URL
+        window.history.replaceState({}, '', window.location.pathname);
+    }
+    
+    // Small random chance of new holder (for demo)
+    if (Math.random() < 0.05 && holders < 1000) {
+        holders++;
+        updateHolderDisplay();
+    }
+}
 
-window.addEventListener('scroll', animateOnScroll);
-animateOnScroll(); // Run once on load
+function updateHolderDisplay() {
+    // Save to localStorage
+    localStorage.setItem('apor_holders_v2', holders.toString());
+    
+    // Update display
+    const holderElement = document.getElementById('holderCount');
+    if (holderElement) {
+        holderElement.textContent = holders.toLocaleString();
+    }
+    
+    // Update progress
+    const progress = Math.min((holders / 1000) * 100, 100);
+    const progressFill = document.getElementById('progressFill');
+    if (progressFill) {
+        progressFill.style.width = `${progress}%`;
+    }
+    
+    // Update progress text
+    const progressText = document.getElementById('currentProgress');
+    if (progressText) {
+        progressText.textContent = `${holders} / 1,000 Holders`;
+    }
+}
+
+function showPurchaseNotification() {
+    // Create notification
+    const notification = document.createElement('div');
+    notification.className = 'purchase-notification';
+    notification.innerHTML = `
+        <div style="
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(90deg, var(--solana-purple), var(--solana-green));
+            color: var(--dark);
+            padding: 15px 25px;
+            border-radius: 10px;
+            z-index: 10000;
+            animation: slideUp 0.5s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        ">
+            <i class="fas fa-shopping-cart"></i>
+            <div>
+                <div>Purchase detected!</div>
+                <small>Holder count updated</small>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+        }
+    }, 3000);
+}
+
+function showNewHolderPopup() {
+    const popup = document.createElement('div');
+    popup.innerHTML = `
+        <div style="
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--dark);
+            border: 2px solid var(--solana-green);
+            border-radius: 15px;
+            padding: 30px;
+            z-index: 10001;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            max-width: 400px;
+            width: 90%;
+        ">
+            <div style="font-size: 4rem; margin-bottom: 20px;">🎉</div>
+            <h3 style="color: var(--solana-green); margin-bottom: 15px;">New Holder Alert!</h3>
+            <p>Welcome to the ApeOracle family! Our community now has <strong>${holders} holders</strong>.</p>
+            <p style="font-size: 0.9rem; color: var(--gray); margin-top: 15px;">
+                <strong>${1000 - holders} more</strong> needed for NFT airdrop!
+            </p>
+            <button onclick="this.parentNode.parentNode.remove()" style="
+                background: var(--solana-green);
+                color: var(--dark);
+                border: none;
+                padding: 10px 25px;
+                border-radius: 50px;
+                font-weight: 600;
+                margin-top: 20px;
+                cursor: pointer;
+            ">
+                Awesome! 🚀
+            </button>
+        </div>
+        <div style="
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 10000;
+        "></div>
+    `;
+    
+    document.body.appendChild(popup);
+}
+
+// Add to your existing DOMContentLoaded event
+document.addEventListener('DOMContentLoaded', function() {
+    // ... your existing code ...
+    
+    // Initialize holder tracker
+    initHolderTracker();
+});
