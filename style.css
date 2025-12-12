@@ -878,144 +878,131 @@ h1, h2, h3, h4 {
     }
 }
 
-/* NFT Section - Clean Professional Design */
-.nft-preview {
-    padding: 80px 0;
-}
-
-.section-title {
-    text-align: center;
-    font-size: 2.8rem;
-    margin-bottom: 10px;
-    font-family: 'Orbitron', sans-serif;
-    letter-spacing: 2px;
-}
-
-.section-subtitle {
-    text-align: center;
-    color: var(--gray);
-    font-size: 1.1rem;
-    margin-bottom: 50px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Tiers Container */
-.tiers-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
-    margin-bottom: 40px;
-}
-
-.tier-card {
-    background: rgba(15, 15, 35, 0.8);
-    border-radius: 16px;
-    padding: 30px;
-    border: 1px solid rgba(124, 58, 237, 0.15);
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    min-height: 380px;
-}
-
-.tier-card:hover {
-    border-color: rgba(124, 58, 237, 0.4);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.1);
-}
-
-.tier-card.premium {
-    border-color: rgba(255, 209, 102, 0.3);
-    background: linear-gradient(145deg, rgba(15, 15, 35, 0.9), rgba(184, 134, 11, 0.05));
-}
-
-.tier-card.premium:hover {
-    border-color: rgba(255, 209, 102, 0.5);
-    box-shadow: 0 10px 30px rgba(255, 209, 102, 0.1);
-}
-
-.tier-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.tier-header h3 {
-    font-size: 1.4rem;
-    color: white;
-    font-weight: 600;
-    letter-spacing: 1px;
-}
-
-.tier-count {
-    background: rgba(124, 58, 237, 0.15);
-    color: var(--primary);
-    padding: 6px 15px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-}
-
-.tier-card.premium .tier-count {
-    background: rgba(255, 209, 102, 0.2);
-    color: var(--accent);
-}
-
-.tier-features {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-.feature {
+/* NFT Section - ALIGNED WITH ROADMAP */
+.roadmap-connection-banner {
+    background: linear-gradient(90deg, rgba(124, 58, 237, 0.1), rgba(6, 214, 160, 0.05));
+    border-radius: 12px;
+    padding: 15px 25px;
+    margin: 20px 0 40px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    text-align: center;
+}
+
+.roadmap-connection-banner i {
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.roadmap-connection-banner span {
+    color: rgba(255, 255, 255, 0.9);
     font-size: 0.95rem;
 }
 
-.feature i {
-    color: var(--secondary);
-    width: 20px;
-    text-align: center;
-    font-size: 1rem;
-}
-
-.feature span {
-    color: rgba(255, 255, 255, 0.85);
-}
-
-.tier-card.premium .feature i {
+.roadmap-connection-banner a {
     color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
-.tier-emoji {
+.roadmap-connection-banner a:hover {
+    text-decoration: underline;
+}
+
+/* Updated Tier Cards with Timeline */
+.tier-timeline {
     position: absolute;
-    bottom: 25px;
-    right: 25px;
-    font-size: 3rem;
-    opacity: 0.7;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--gray);
+    font-size: 0.8rem;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Corrected Timeline */
+.corrected-timeline {
+    background: rgba(15, 15, 35, 0.8);
+    border-radius: 16px;
+    padding: 35px;
+    margin: 40px 0;
+    border: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+.corrected-timeline h3 {
+    text-align: center;
+    color: var(--accent);
+    margin-bottom: 30px;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+.timeline-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.step {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
     transition: transform 0.3s ease;
 }
 
-.tier-card:hover .tier-emoji {
-    transform: scale(1.1);
+.step:hover {
+    transform: translateY(-5px);
+    border-color: rgba(124, 58, 237, 0.3);
 }
 
-/* Access Notice */
+.step-marker {
+    background: rgba(124, 58, 237, 0.1);
+    color: var(--primary);
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    line-height: 1.3;
+    text-align: center;
+    margin-bottom: 20px;
+    border: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+.step-marker.active {
+    background: rgba(6, 214, 160, 0.1);
+    color: var(--secondary);
+    border-color: rgba(6, 214, 160, 0.3);
+}
+
+.step-content h4 {
+    color: white;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.step-content p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Updated Access Notice */
 .access-notice {
     background: linear-gradient(90deg, rgba(124, 58, 237, 0.08), rgba(6, 214, 160, 0.04));
     border-radius: 16px;
     padding: 30px;
-    margin: 40px 0;
     border: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+.access-content {
     text-align: center;
 }
 
@@ -1031,7 +1018,7 @@ h1, h2, h3, h4 {
     font-size: 1.05rem;
     line-height: 1.6;
     max-width: 700px;
-    margin: 0 auto;
+    margin: 0 auto 20px;
 }
 
 .access-content strong {
@@ -1039,82 +1026,39 @@ h1, h2, h3, h4 {
     font-weight: 600;
 }
 
-/* Community Drop */
-.community-drop {
-    background: rgba(6, 214, 160, 0.05);
-    border-radius: 16px;
-    padding: 30px;
-    border: 1px solid rgba(6, 214, 160, 0.2);
-}
-
-.drop-header {
-    display: flex;
-    justify-content: space-between;
+.btn-secondary {
+    display: inline-flex;
     align-items: center;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    gap: 15px;
+    gap: 10px;
+    background: rgba(124, 58, 237, 0.2);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(124, 58, 237, 0.3);
 }
 
-.drop-header h3 {
-    color: var(--secondary);
-    font-size: 1.3rem;
-    letter-spacing: 1px;
-}
-
-.drop-badge {
-    background: var(--secondary);
-    color: var(--dark);
-    padding: 6px 18px;
-    border-radius: 20px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 0.5px;
-}
-
-.community-drop p {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.05rem;
-    line-height: 1.6;
-}
-
-.community-drop strong {
-    color: var(--accent);
+.btn-secondary:hover {
+    background: rgba(124, 58, 237, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(124, 58, 237, 0.2);
 }
 
 /* Responsive Design */
-@media (max-width: 1100px) {
-    .tiers-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
 @media (max-width: 768px) {
-    .tiers-container {
+    .timeline-steps {
         grid-template-columns: 1fr;
     }
     
-    .drop-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .section-title {
-        font-size: 2.2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .tier-card {
-        padding: 25px;
-    }
-    
-    .tier-header {
+    .roadmap-connection-banner {
         flex-direction: column;
         gap: 10px;
+        text-align: center;
     }
     
-    .access-content h3 {
-        font-size: 1.1rem;
+    .tier-timeline {
+        font-size: 0.7rem;
     }
 }
